@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#07111f">
+  <meta name="description" content="Radar — a calm, interactive weather radar dashboard.">
+  <title>Radar — Weather, at a glance</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <a class="brand" href="#" aria-label="Radar home"><span class="brand-mark" aria-hidden="true"><i></i></span><span>radar<span class="brand-period">.</span></span></a>
+      <div class="topbar-center"><span class="live-dot"></span><span>WEATHER RADAR</span><span class="topbar-divider">/</span><span id="updated-label">UPDATED JUST NOW</span></div>
+      <button class="icon-button menu-button" id="units-toggle" aria-label="Toggle temperature units" title="Toggle °C / °F"><span id="unit-label">°C</span></button>
+    </header>
+
+    <main>
+      <section class="intro-row">
+        <div><p class="eyebrow">YOUR LOCAL FORECAST</p><h1>Weather, <span>at a glance.</span></h1></div>
+        <form class="search" id="search-form" role="search"><span class="search-icon" aria-hidden="true">⌕</span><input id="location-input" type="search" placeholder="Search a city..." aria-label="Search a city" autocomplete="off"><button type="submit" aria-label="Search">→</button></form>
+      </section>
+
+      <section class="dashboard" aria-label="Weather dashboard">
+        <article class="weather-card panel">
+          <div class="location-line"><div><p class="eyebrow">CURRENT LOCATION</p><h2 id="city-name">San Francisco</h2></div><button class="location-button" id="locate-button" aria-label="Use my current location" title="Use my location">◎</button></div>
+          <div class="current-weather"><div class="temperature"><span id="temperature">18</span><span class="degree">°</span></div><div class="condition"><span class="weather-icon" id="weather-icon" aria-hidden="true">☀</span><span id="condition-text">Partly cloudy</span><span class="feels-like">Feels like <b id="feels-like">17°</b></span></div></div>
+          <div class="weather-details"><div><span class="detail-icon">↗</span><span class="detail-label">WIND</span><b id="wind-value">12 km/h</b></div><div><span class="detail-icon">◌</span><span class="detail-label">HUMIDITY</span><b id="humidity-value">64%</b></div><div><span class="detail-icon">☂</span><span class="detail-label">RAIN</span><b id="rain-value">10%</b></div></div>
+          <div class="sunset-row"><span>☼ &nbsp; SUNSET</span><b id="sunset-value">7:42 PM</b><span class="sunset-track"><i></i></span></div>
+        </article>
+
+        <article class="radar-card panel">
+          <div class="card-heading"><div><p class="eyebrow">LIVE PRECIPITATION</p><h2>Radar map</h2></div><button class="map-control" id="map-toggle" aria-label="Pause radar animation" title="Pause animation">Ⅱ</button></div>
+          <div class="map" id="radar-map" role="img" aria-label="Animated radar visualization showing precipitation around your location">
+            <div class="map-grid"></div><div class="map-land land-one"></div><div class="map-land land-two"></div><div class="map-land land-three"></div>
+            <div class="road road-one"></div><div class="road road-two"></div><div class="road road-three"></div>
+            <div class="water water-one"></div><div class="rain rain-one"></div><div class="rain rain-two"></div><div class="rain rain-three"></div>
+            <div class="radar-sweep"></div><div class="map-center"><span></span></div>
+            <div class="map-label label-one">PACIFIC HEIGHTS</div><div class="map-label label-two">DOWNTOWN</div><div class="map-label label-three">MISSION DISTRICT</div>
+            <div class="map-zoom"><button aria-label="Zoom in" id="zoom-in">+</button><button aria-label="Zoom out" id="zoom-out">−</button></div>
+            <div class="map-caption"><span class="live-dot"></span> LIVE RADAR <span class="caption-sep">·</span> <span id="map-city">SAN FRANCISCO</span></div>
+          </div>
+          <div class="radar-footer"><span><i class="legend-dot light-rain"></i>Light</span><span><i class="legend-dot moderate-rain"></i>Moderate</span><span><i class="legend-dot heavy-rain"></i>Heavy</span><span class="radar-time">NOW <b>›</b> +60 MIN</span></div>
+        </article>
+      </section>
+
+      <section class="forecast-section">
+        <div class="section-heading"><div><p class="eyebrow">THE NEXT FEW HOURS</p><h2>Hourly forecast</h2></div><span class="timezone" id="timezone-label">LOCAL TIME</span></div>
+        <div class="hourly panel" id="hourly-forecast" aria-label="Hourly forecast"></div>
+      </section>
+      <footer><span>Made for clearer skies.</span><span>Radar <i>·</i> Weather data is a demo</span></footer>
+    </main>
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  </div>
+  <script src="app.js"></script>
+</body>
+</html>
